@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-weight: bold;
+			font-family: 'Poppins', sans-serif;
+			border: none;
+			outline: none;
+
+		}
+		.container{
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #444;
+			width: 100%;
+			height: 100vh;
+
+		}
+		.box{
+			position: relative;
+			display: block;
+			overflow: hidden;
+			background: #fff;
+			width: 22%;
+			height: 30rem;
+			border-radius: 1rem;
+		}
+		.input-box input{
+			width: 96%;
+			height: 8rem;
+			color: #444;
+
+			margin: 2%;
+			overflow: hidden;
+			border-radius: 1rem;
+			text-align: right;
+			font-size: 2rem;
+		}
+		.keyboard{
+			display: block;
+			width: 100%;
+			height: auto;
+			padding: 0 1rem;
+		}
+		.row{
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.row .col-colored{
+			display: flex;
+			text-align: center;
+			justify-content: center;
+			color: #ff9900;
+			width: 4rem;
+			height: 3rem;
+			margin: .5rem;
+			border-radius: .7rem;
+			
+			font-size: 1.2rem;
+		}
+		.col-colored,.col{
+			box-shadow: -2px -2px 15px rgba(255, 255, 255, .1),4px 4px 15px rgba(0,0,0,.3);
+			cursor: pointer;
+			background: transparent;
+		}
+		.col-colored:active,.col:active{
+			transform: scale(0.9);
+		}
+		.row .col{
+			display: flex;
+			text-align: center;
+			justify-content: center;
+			color: #444;
+			width: 4rem;
+			height: 3rem;
+			margin: .5rem;
+			border-radius: .7rem;
+			font-size: 1.2rem;
+		}
+		#equal{
+			width: 9rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="input-box">
+				<input type="text" id="display" readonly>
+			</div>
+			<div class="keyboard">
+				<div class="row">
+					<input type="button" class="col-colored" value="AC" onclick="erase() ">
+					<input type="button"  class="col-colored" value="DE" onclick="remove()">
+					<input type="button"  class="col-colored" value="." onclick="display('.') ">
+					<input type="button"  class="col-colored" value="/" onclick="display('/') ">
+				</div>  
+				<div class="row">
+					<input type="button"  class="col" value="7" onclick="display('7') ">
+					<input type="button"  class="col" value="8" onclick="display('8') ">
+					<input type="button"  class="col" value="9" onclick="display('9') ">
+					<input type="button"  class="col-colored" value="*" onclick="display('*') ">
+				</div>
+				<div class="row">
+					<input type="button"  class="col" value="4" onclick="display('4') ">
+					<input type="button"  class="col" value="5" onclick="display('5') ">
+					<input type="button"  class="col" value="6" onclick="display('6') ">
+					<input type="button"  class="col-colored" value="-" onclick="display('-') ">
+				</div> 
+				<div class="row">
+					<input type="button"  class="col" value="1" onclick="display('1') ">
+					<input type="button"  class="col" value="2" onclick="display('2') ">
+					<input type="button"  class="col" value="3" onclick="display('3') ">
+					<input type="button"  class="col-colored" value="+" onclick="display('+') ">
+				</div>
+				<div class="row">
+					<input type="button"  class="col" value="00" onclick="display('00') ">
+					<input type="button"  class="col" value="0" onclick="display('0') ">
+					<input type="button"  class="col-colored" id="equal" value="="  onclick="calculate()">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		let	screen=document.getElementById('display');
+		function display(num){
+			screen.value+=num;
+		}
+		function calculate(){
+			try{
+				screen.value = eval(screen.value);
+			}
+			catch(error){
+				alert("Invalid ... ");
+			}
+		}3
+		function remove(){
+			screen.value = screen.value.slice(0,-1);
+		}
+		function erase(){
+			screen.value = '';
+		}
+	</script>
+</body>
+</html>
